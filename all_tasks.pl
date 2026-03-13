@@ -6,7 +6,7 @@ append([], List, List).
 append([H|T], List, [H|List2]) :- append(T, List, List2).
 
 books_borrowed_by_student(Student, L) :-
-    collect(Student, [], L).
+    collect(Student, [], L), !.
 
 collect(Student, List, L) :-
     borrowed(Student, Book),
@@ -147,4 +147,4 @@ most_repeated([H|T], CurrentTopic, CurrentCount, Result) :-
 most_common_topic_for_student(Student, Topic) :-
     books_borrowed_by_student(Student, Books),
     all_topics_of_books(Books, Topics),
-    most_repeated(Topics, Topic).
+    most_repeated(Topics, Topic), !.
