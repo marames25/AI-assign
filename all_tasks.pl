@@ -73,7 +73,7 @@ max_book(CurrentBook, CurrentMax, CurrentBook) :-
 ratings_of_book(Book, L):-
     get_all_ratings(Book, [], Tmp), % extract all records in a list (Tmp)
     eliminate_book_record(Tmp, Result), % removes the books name
-    L = Result.
+    L = Result,!.
 
 get_all_ratings(Book, Acc, Result):-
     rating(Student, Book, Score), % reads the next record from the predicate
@@ -109,7 +109,7 @@ maximize(Mx, [Head | Tail]) :-
 top_reviewer(Student):-
     get_all_scores([], Scores), % get all scores into a list
     maximize(Mx, Scores), % get the max of the list 
-    rating(Student, _, Mx). % get the student who gave that score
+    rating(Student, _, Mx),!. % get the student who gave that score
 
 % ========================
 % TASK 6: Most common topic for a student
